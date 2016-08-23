@@ -10,14 +10,14 @@ library(mapdata)
 library(zoo)
 library(ncdf4)
 
-load("centroidshc.Rdata")
-load("datafromPCA.Rdata")
+load("centroidshcmask.Rdata")
+load("datahcmaskPCA.Rdata")
 
 ############################################################################################
 ## 3. CENTERS MATRIX TO KMEANS
 ##########################################################################################
 
-dataMatrix <- as.matrix(datahc)
+dataMatrix <- as.matrix(datahcmask)
 
 centros <- lapply(seq(from=1, to=69),
                   FUN=function(i) do.call(rbind, centroids[[i]]))
@@ -28,5 +28,5 @@ kmeansexp <- lapply(centros,
 
 #############################################################################################
 
-save(kmeansexp, file='kmeansexpafterhc.Rdata')
+save(kmeansexp, file='kmeansexpafterhcmask.Rdata')
 
