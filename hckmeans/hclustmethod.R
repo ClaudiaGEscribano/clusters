@@ -49,4 +49,4 @@ centroids <- cluster.centroid(kut, dataMatrix, 69) ## contiene una lista de 70 e
 
 ## saving centroids, just if you need to check
 
-save(centroids, file='centroidshc.Rdata')
+save(centroids, file='centroidshcmask.Rdata')
