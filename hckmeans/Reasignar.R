@@ -23,6 +23,8 @@ boundaries$names
 IDs <- sapply(strsplit(boundaries$names, ":"), function(x) x[1])
 boundaries_sp<- map2SpatialPolygons(boundaries, IDs=IDs, proj4string=CRS(projection(s)))
 
+linea <- as(boundaries_sp, "SpatialLines" 
+
 S <- subset(s, 1)
 S <- mask(S, boundaries_sp)
 
@@ -31,7 +33,7 @@ S <- mask(S, boundaries_sp)
 
 data <- as.data.frame(S)
 namesNNA <- which(!is.na(data[,1]))
-clusters_df<- as.data.frame(kmeansexp[[18]]$cluster)
+clusters_df<- as.data.frame(kmeansexp[[20]]$cluster)
 
 data[namesNNA,] <- clusters_df[,1]
 
@@ -52,7 +54,7 @@ vecinosValor <- lapply(seq(1:ncell(P)), FUN= function(x) P[ad[ad[,1] == x, 3]])
 
 
 Reasignar <- lapply(seq(1:ncell(P)),
-	FUN=function(i)  if (length(which(vecinosValor[[i]] != P[i])) >= 6) {
+	FUN=function(i)  if (length(which(vecinosValor[[i]] != P[i])) >= 5) {
                  P[i] <- sort(vecinosValor[[i]], decreasing= TRUE)[1]
              } else { P[i] })
 
@@ -64,3 +66,13 @@ R <- setValues(R, unlist(Reasignar))
 
 writeRaster(R, filename='hckmeanspartition20mask.grd', overwrite=TRUE)
 
+
+Polygons <- list()
+for (i in 1:20) Polygons[[i]] <- rasterToPolygons(R, fun=function(x) {x==i})
+
+levelplot(mask(R, Polygons[[20]]))+layer(sp.lines(linea)) ## visualiza los clusters uno a uno.
+
+ksB <- lapply(seq(1:20), FUN=function(x) mask(R, Polygons[[x]]))
+            
+save(ksB, file='mascaraClusters20enTierra.Rdata')
+            
