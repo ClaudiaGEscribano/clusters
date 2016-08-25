@@ -23,7 +23,7 @@ boundaries$names
 IDs <- sapply(strsplit(boundaries$names, ":"), function(x) x[1])
 boundaries_sp<- map2SpatialPolygons(boundaries, IDs=IDs, proj4string=CRS(projection(s)))
 
-linea <- as(boundaries_sp, "SpatialLines" 
+linea <- as(boundaries_sp, "SpatialLines")
 
 S <- subset(s, 1)
 S <- mask(S, boundaries_sp)
@@ -33,7 +33,7 @@ S <- mask(S, boundaries_sp)
 
 data <- as.data.frame(S)
 namesNNA <- which(!is.na(data[,1]))
-clusters_df<- as.data.frame(kmeansexp[[20]]$cluster)
+clusters_df<- as.data.frame(kmeansexp[[19]]$cluster) ## tomo uno menos del óptimo porque kmeansexp[[1]] coniene 2 clusters
 
 data[namesNNA,] <- clusters_df[,1]
 
