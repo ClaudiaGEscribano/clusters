@@ -47,6 +47,19 @@ myPal <- brewer.pal(9, 'Set1')
 myTheme <- rasterTheme(region = myPal)
 levelplot(r, par.settings = myTheme) + layer(sp.lines(admin))
 
+## Compute centroids for each cluster
+x <- init(r, 'x')
+y <- init(r, 'y')
+xy <- stack(x, y)
+centroids <- zonal(xy, r)
+## Display clusters with number superimposed
+levelplot(r, par.settings = myTheme) +
+    layer({
+        sp.lines(admin)
+        panel.text(centroids[, 2:3],
+                   labels = centroids[, 1])
+    })
+
 ## Define a RasterStack with the explanatory variables 
 s <- stack(r, dem, land) 
 names(s) <- c('clusters', 'DEM', 'land')
