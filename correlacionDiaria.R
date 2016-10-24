@@ -14,7 +14,7 @@ ksB <- do.call(mosaic, ksB)
 tt <- seq(as.Date("1983-01-01"), as.Date("2013-12-31"), 'day')
 names(SIS) <- tt
 ## selecciono el mes que mas em interesa: Noviembre
-month <- function(x) as.numeric(format(idx, "%m"))
+month <- function(x) as.numeric(format(tt, "%m"))
 idxNov <- which(month(tt) == 11)
 ttNov <- tt[idxNov]
 ## tomo lo dias de noviembre de todo el stack de los 30 años
