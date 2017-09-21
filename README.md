@@ -16,3 +16,11 @@ This folder contains a hierarchical + kmeans clustering algorithm. The scripts i
  5) Lmethod.R
 
  6) Reasignardef.R
+
+wavelet clustering:
+
+Extract the features of a dataset by wavelet analysis. Group in cluster those features.
+
+1) wave2cluster.R Extrae las características
+
+2) pamClustering.R algorithmo para aplicar a las características. 
