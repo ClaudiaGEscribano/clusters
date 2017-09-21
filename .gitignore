@@ -1,0 +1,34 @@
+# All the .pdf generated files
+/wavelet_clusters/*.pdf
+/hckmeans/*.pdf
+/kmeansmultiple/*.pdf
+
+# All de jpeg/jpg files
+/wavelet_clusters/*.jpeg
+/hckmeans/*.jpeg
+/kmeansmultiple/*.jpeg
+
+/wavelet_clusters/*.jpg
+/hckmeans/*.jpg
+/kmeansmultiple/*.jpg
+
+# All the .png files
+/wavelet_clusters/*.png
+/hckmeans/*.png
+/kmeansmultiple/*.png
+
+# All the data files not needed
+
+/hckmeans/*.nc
+/kmeansmultiple/*.nc
+
+/hckmeans/*.grd
+/kmeansmultiple/*.grd
+
+/hckmeans/*.gri
+/kmeansmultiple/*.gri
+
+# .Rdata files generated in hckmeans
+
+/hckmeans/*.Rdata
+/wavelet_clusters/data/*.Rdata
